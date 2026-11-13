@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Titolo che appare nella scheda del browser -->
+    <title>Ti amo ♥️🎄</title>
+
+    <!-- Favicon blocco d'erba di Minecraft -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23866043'/><rect width='16' height='5' fill='%235b9e32'/><rect x='2' y='5' width='3' height='2' fill='%235b9e32'/><rect x='9' y='5' width='4' height='2' fill='%235b9e32'/><rect x='14' y='5' width='2' height='1' fill='%235b9e32'/></svg>">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div id="neve-container"></div>
+
+    <!-- Contenitore per allineare titolo e scritta gialla -->
+    <div class="title-wrapper">
+        <h1 class="mc-title">Buon Natale Amore</h1>
+            <p class="splash-text">Amore Infinito</p>
+    </div>
+    
+        <button class="mc-btn" onclick="apriSezione('lettera')">Leggi la lettera</button>
+        <button class="mc-btn" onclick="apriSezione('regalo')">Apri il regalo</button>
+
+            <!-- Esempio per la sezione Lettera -->
+<div id="overlay-lettera" class="mc-overlay">
+    <div class="mc-box centrato">
+        <!-- Bottone X per chiudere -->
+        <button class="mc-close-btn" onclick="chiudiSezione('lettera')">X</button>
+        
+        <h2>Per te...</h2>
+        <p>Qui scrivi la tua bellissima lettera di Natale per Sofia.</p>
+    </div>
+</div>
+
+<!-- Esempio per la sezione Regalo -->
+<div id="overlay-regalo" class="mc-overlay">
+    <div class="mc-box centrato">
+        <!-- Bottone X per chiudere -->
+        <button class="mc-close-btn" onclick="chiudiSezione('regalo')">X</button>
+        
+        <h2>Buono Regalo!</h2>
+        <p>Hai vinto una cena insieme offerta da me.</p>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

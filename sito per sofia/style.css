@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', monospace;
+}
+
+/* Sfondo cielo notturno Minecraft con sfumatura */
+body {
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(to bottom, #0b132b 0%, #1c2541 60%, #3a506b 100%);
+    background-image: url('sfondo.jpg'); background-size: cover;
+    color: white;
+    text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Evita barre di scorrimento causate dalla neve */
+    position: relative;
+}
+
+/* Contenitore che tiene insieme titolo e scritta gialla */
+.title-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 50px;
+}
+
+.mc-title {
+    font-size: 2.2rem;
+    color: #ffffff;
+    text-shadow: 4px 4px 0px #3f3f3f;
+    margin: 0;
+}
+
+/* Scritta gialla posizionata in basso a destra del titolo */
+.splash-text {
+    position: absolute;
+    bottom: -18px;
+    right: -35px;
+    margin: 0;
+    color: #ffff55;
+    font-size: 0.85rem;
+    text-shadow: 2px 2px 0px #3f3f00;
+    transform: rotate(-18deg);
+    animation: pulse 0.8s infinite alternate;
+    white-space: nowrap;
+}
+
+@keyframes pulse {
+    from { transform: rotate(-18deg) scale(1); }
+    to { transform: rotate(-18deg) scale(1.12); }
+}
+
+/* Stile dei fiocchi di neve pixelati */
+.fiocco {
+    position: fixed;
+    top: -10px;
+    background-color: white;
+    width: 6px;
+    height: 6px; /* Quadrati come i pixel di Minecraft! */
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+    animation: caduta linear infinite;
+}
+
+@keyframes caduta {
+    to {
+        transform: translateY(105vh);
+    }
+}
+
+/* Bottone stile Minecraft */
+.mc-btn {
+    background-color: #7d7d7d;
+    color: white;
+    border: 3px solid #000;
+    box-shadow: inset -3px -3px 0px #555555, inset 3px 3px 0px #aaaaaa;
+    padding: 15px 25px;
+    margin: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 320px;
+    text-shadow: 2px 2px 0px #3f3f3f;
+}
+
+.mc-btn:hover {
+    background-color: #3c8527; /* Verde erba quando passi sopra col mouse */
+    box-shadow: inset -3px -3px 0px #2a641c, inset 3px 3px 0px #52a535;
+}
+
+/* Finestra tipo Inventario / Libro */
+.mc-box {
+    background-color: #c6c6c6;
+    color: #222222;
+    border: 4px solid #000;
+    box-shadow: inset -4px -4px 0px #555555, inset 4px 4px 0px #ffffff;
+    padding: 25px;
+    max-width: 500px;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* Classe utile per nascondere/mostrare le sezioni */
+.nascosto {
+    display: none;
+}
+
+/* Animazione di apertura figa (effetto pop-up) */
+@keyframes popIn {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Questa classe viene aggiunta da JavaScript quando apriamo il box */
+.mc-box.aperto {
+    display: block;
+    animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+/* Sfondo scuro trasparente che copre tutto lo schermo quando il box è aperto */
+.mc-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Sfondo nero semi-trasparente */
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Quando l'overlay è attivo, diventa visibile */
+.mc-overlay.aperto {
+    display: flex;
+    animation: fadeIn 0.2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Stile del box centrato con l'animazione */
+.mc-box.centrato {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* Il bottone della X per chiudere */
+.mc-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #aa0000; /* Rosso Minecraft */
+    color: white;
+    border: 2px solid #000;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset -2px -2px 0px #550000, inset 2px 2px 0px #ff5555;
+}
+
+.mc-close-btn:hover {
+    background-color: #ff5555;
+}
+
+/* --- MEDIA QUERY PER DISPOSITIVI MOBILI (Smartphone) --- */
+@media screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
+    /* Rimpicciolisci il titolo per evitare che vada a capo male */
+    .mc-title {
+        font-size: 1.5rem;
+    }
+
+    /* Rimodula la scritta gialla per gli schermi piccoli */
+    .splash-text {
+        font-size: 0.7rem;
+        bottom: -15px;
+        right: -20px;
+    }
+
+    /* Rendi i bottoni larghi quanto lo schermo del telefono ma senza sbordare */
+    .mc-btn {
+        width: 90vw;
+        max-width: 280px;
+        padding: 12px 15px;
+        font-size: 0.85rem;
+    }
+
+    /* Adatta i box centrali (overlay) per non uscire dallo schermo del telefono */
+    .mc-box.centrato {
+        width: 95%;
+        max-width: 95vw;
+        padding: 15px;
+        max-height: 75vh;
+    }
+}
